@@ -1,0 +1,28 @@
+{% extends 'admintemp/admin_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Sl No.</th>
+                <th>Name</th>
+                <th>Attendance</th>
+            </tr>
+            </thead>
+            {% for attendance in attendance %}
+            <tbody>
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{attendance.name}}</td>
+                <td>{{attendance.attendance}}</td>
+            </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

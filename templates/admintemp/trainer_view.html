@@ -1,0 +1,39 @@
+{% extends 'admintemp/admin_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <th>sl No.</th>
+            <th>name</th>
+            <th>age</th>
+            <th>address</th>
+            <th>contact_no</th>
+            <th>photo</th>
+            <th>edit</th>
+            <th>delete</th>
+            </thead>
+            {% for i in data %}
+            <tbody>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.age}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.contact_no}}</td>
+            <td> <img src="{{i.photo.url}}"> </td>
+            <td><a class="btn btn-success" href="{% url 'trainer_update' i.id %}">Edit</a></td>
+            <td>
+                <form action="{% url 'trainer_delete' i.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

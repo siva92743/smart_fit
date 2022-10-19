@@ -1,0 +1,35 @@
+{% extends 'admintemp/admin_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <th>sl No.</th>
+            <th>name</th>
+            <th>bill_date</th>
+            <th>amount</th>
+            <th>status</th>
+            </thead>
+            {% for i in bill %}
+            <tbody>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.bill_date}}</td>
+            <td>{{i.amount}}</td>
+            <td>{% if i.status == 0 %}
+                <button type="button" class="btn btn-danger">Bill Pending</button>
+                {% elif i.status == 1 %}
+                <button type="button" class="btn btn-primary">Bill Paid</button>
+                {% elif i.status == 2 %}
+                <button type="button" class="btn btn-success">Choosed to Pay in Direct</button>
+                {% endif %}
+            </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

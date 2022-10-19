@@ -1,0 +1,29 @@
+{% extends 'customerpanel/customer_home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <th>sl No.</th>
+            <th>name</th>
+            <th>age</th>
+            <th>address</th>
+            <th>contact_no</th>
+            <th>photo</th>
+            </thead>
+            {% for i in data %}
+            <tbody>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.age}}</td>
+            <td>{{i.address}}</td>
+            <td>{{i.contact_no}}</td>
+            <td> <img src="{{i.photo.url}}"> </td>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
